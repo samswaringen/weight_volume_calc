@@ -17,10 +17,13 @@ function App() {
   const [itemsList, setItemsList] = useState([])
   const [vehicle,setVehicle] = useState("")
   const [ready,setReady] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [deliveryArr, setDeliveryArr] = useState([""])
   const [bearer, setBearer] = useState()
   const [totalWeight, setTotalWeight] = useState(0)
   const [totalVolume, setTotalVolume] = useState(0)
+
+  const colors = ["red","orange","yellow","green","blue","purple"]
 
   const addItem = ()=>{
     setItemsList([...itemsList,intitalItemList])
@@ -42,6 +45,7 @@ function App() {
     setTotalWeight(newWeight)
     setTotalVolume(newVolume)
     console.log(newWeight, newVolume)
+    setLoading(false)
     if(newWeight <= 5 && newVolume<= 1){
       setVehicle("Bike")
     }else if(newWeight <= 150 && newVolume<= 31){
@@ -60,10 +64,10 @@ function App() {
     setDeliveryArr([""])
     setBearer("")
     setItemsList([])
+
   }
 
   useEffect(()=>{
-    console.log("itemsList", itemsList)
     if(ready){
       giveVehicle()
       setReady(false)
@@ -72,6 +76,7 @@ function App() {
 
 
   const grabDelivery = (array, items)=>{
+    setLoading(true)
     if(array.length === 0){
       setReady(true)
     }else{
@@ -115,7 +120,7 @@ function App() {
           <input onChange={(e)=>setBearer(e.target.value)}></input>
         </div>
         <button onClick={()=>grabDelivery([...deliveryArr],[...itemsList])}>Get Vehicle</button>
-        <div>Vehicle needed:<strong style={{fontSize:'20px'}}>{vehicle}</strong></div>
+        <div>Vehicle needed:{loading ? <><span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span><span>!</span></>:<strong style={{fontSize:'20px'}}>{vehicle}</strong>}</div>
         <div>Total Weight: {totalWeight}lbs</div>
         <div>Total Volume: {Math.floor(totalVolume)}ft<sup>3</sup></div>
         
