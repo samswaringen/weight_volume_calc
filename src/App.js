@@ -18,7 +18,6 @@ function App() {
   const [vehicle,setVehicle] = useState("")
   const [ready,setReady] = useState(false)
   const [deliveryArr, setDeliveryArr] = useState([""])
-  const [deliveryID, setDeliveryID] = useState()
   const [bearer, setBearer] = useState()
   const [totalWeight, setTotalWeight] = useState(0)
   const [totalVolume, setTotalVolume] = useState(0)
@@ -58,12 +57,16 @@ function App() {
     }else if(newWeight <= 35000 && newVolume<= 1920){
       setVehicle("Trailer/Flatbed")
     }
+    setDeliveryArr([""])
+    setBearer("")
+    setItemsList([])
   }
 
   useEffect(()=>{
     console.log("itemsList", itemsList)
     if(ready){
       giveVehicle()
+      setReady(false)
     } 
   },[itemsList,ready])
 
