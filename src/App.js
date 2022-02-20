@@ -114,10 +114,10 @@ function App() {
           <label>Enter Bearer Token</label>
           <input onChange={(e)=>setBearer(e.target.value)}></input>
         </div>
-        <button onClick={()=>grabDelivery([...deliveryArr],[...itemsList])}>Get Delivery</button>
+        <button onClick={()=>grabDelivery([...deliveryArr],[...itemsList])}>Get Vehicle</button>
         <div>Vehicle needed:<strong style={{fontSize:'20px'}}>{vehicle}</strong></div>
-        <div>Total Weight:{totalWeight}</div>
-        <div>Total Volume:{totalVolume}</div>
+        <div>Total Weight: {totalWeight}lbs</div>
+        <div>Total Volume: {Math.floor(totalVolume)}ft<sup>3</sup></div>
         
       </div>
     </Calculations.Provider>
