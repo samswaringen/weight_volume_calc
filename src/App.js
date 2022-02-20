@@ -1,19 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import WeightVolumeInput from './components/WeightVolumeInput';
 import axios from 'axios';
 import DeliveryInput from './components/DeliveryInput';
 
 export const Calculations = React.createContext()
 
 function App() {
-  const intitalItemList = {
-    quantity:0,
-    weight:0,
-    length:0,
-    width:0,
-    height:0
-  }
   const [itemsList, setItemsList] = useState([])
   const [vehicle,setVehicle] = useState("")
   const [ready,setReady] = useState(false)
@@ -24,10 +16,6 @@ function App() {
   const [totalVolume, setTotalVolume] = useState(0)
 
   const colors = ["red","orange","yellow","green","blue","purple"]
-
-  const addItem = ()=>{
-    setItemsList([...itemsList,intitalItemList])
-  }
 
   const addDelivery = ()=>{
     setDeliveryArr([...deliveryArr,""])
@@ -106,13 +94,6 @@ function App() {
   return (
     <Calculations.Provider value={{itemsList:itemsList, setItemsList:setItemsList, setDeliveryArr:setDeliveryArr, deliveryArr:deliveryArr}}>
       <div className="App">
-        {/* {ready && <>
-            <button onClick={addItem}>Add Item</button>
-            {itemsList.map((item, index)=><div><WeightVolumeInput item={item} index={index}/></div>)}
-            <button onClick={giveVehicle}>Give me vehicle</button>
-            <div>Vehicle to use: {vehicle}</div>
-          </>
-        } */}
         <button onClick={addDelivery}>Add Delivery</button>
         {deliveryArr.map((delivery, index)=><DeliveryInput index={index}/>)}
         <div>
