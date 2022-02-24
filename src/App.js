@@ -40,8 +40,6 @@ function App() {
       setVehicle("Sedan")
     }else if(newWeight <= 500 && newVolume<= 69){
       setVehicle("SUV/Mini Van")
-    }else if(newWeight <= 900 && newVolume<= 181){
-      setVehicle("Pickup Truck")
     }else if(newWeight <= 3000 && newVolume<= 120){
       setVehicle("Cargo or Sprinter Van")
     }else if(newWeight <= 7000 && newVolume<= 576){
